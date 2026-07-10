@@ -239,9 +239,9 @@ function homeBody() {
       <span class="revival-counter__spark" aria-hidden="true"></span>
     </div>
     <div class="hero-story">
-      <p class="hero-story__text">Квалифицированный ремонт цифровой техники с гарантией. Ремонтируем телефоны, ноутбуки, компьютеры, игровые приставки, видеокарты и геймпады.</p>
       <div class="hero-visual" aria-hidden="true">
         <div class="hero-visual__glow"></div>
+        <p class="hero-story__text">Квалифицированный ремонт цифровой техники с гарантией. Ремонтируем телефоны, ноутбуки, компьютеры, игровые приставки, видеокарты и геймпады.</p>
         <div class="float-card float-phone"></div>
         <div class="float-card float-panel"><span></span><span></span><span></span></div>
         <div class="float-card float-blue"><span></span><span></span></div>

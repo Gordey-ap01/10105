@@ -2838,6 +2838,7 @@ body {
 
 /* 10105 centered counter hero */
 .home-page .hero__inner {
+  width: min(1380px, calc(100% - 48px));
   min-height: calc(100svh - 92px);
   position: relative;
   grid-template-columns: minmax(230px, 0.85fr) minmax(620px, 1fr) minmax(230px, 0.85fr);
@@ -2858,7 +2859,7 @@ body {
 }
 
 .home-page .hero h1 {
-  max-width: 380px;
+  max-width: 260px;
   font-size: clamp(50px, 5.2vw, 82px);
   line-height: 0.96;
 }
@@ -2877,7 +2878,7 @@ body {
   border-radius: clamp(22px, 2.4vw, 34px);
   padding: clamp(44px, 6vw, 82px);
   background:
-    radial-gradient(circle at 50% 38%, rgba(251, 191, 36, 0.34), transparent 28%),
+    radial-gradient(circle at 50% 54%, rgba(251, 191, 36, 0.36), transparent 28%),
     radial-gradient(circle at 20% 18%, rgba(125, 211, 252, 0.27), transparent 25%),
     radial-gradient(circle at 78% 80%, rgba(14, 165, 233, 0.2), transparent 30%),
     linear-gradient(145deg, rgba(15, 23, 42, 0.55), rgba(2, 6, 23, 0.88));
@@ -2889,14 +2890,21 @@ body {
 
 .revival-counter::before {
   inset: 18px;
-  border-radius: clamp(18px, 2vw, 28px);
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 34% 46%, rgba(125, 211, 252, 0.13), transparent 5%),
+    radial-gradient(circle at 66% 56%, rgba(251, 191, 36, 0.14), transparent 5%),
+    linear-gradient(90deg, transparent 0 18%, rgba(125, 211, 252, 0.12) 18% 19%, transparent 19% 100%),
+    linear-gradient(0deg, transparent 0 22%, rgba(251, 191, 36, 0.1) 22% 23%, transparent 23% 100%);
   filter: blur(2.4px);
   opacity: 0.777;
 }
 
 .revival-counter::after {
-  height: 34px;
-  filter: blur(34px);
+  inset: 46% 17% auto;
+  height: 120px;
+  background: radial-gradient(ellipse at 50% 50%, rgba(251, 191, 36, 0.42), transparent 68%);
+  filter: blur(42px);
   opacity: 0.777;
 }
 
@@ -2918,49 +2926,65 @@ body {
 }
 
 .revival-counter__ring {
-  inset: 8%;
-  border-radius: clamp(26px, 3vw, 46px);
+  inset: 9% 12%;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 28% 42%, rgba(125, 211, 252, 0.11), transparent 4%),
+    radial-gradient(circle at 72% 56%, rgba(251, 191, 36, 0.12), transparent 4%);
   filter: blur(2.6px);
   opacity: 0.777;
 }
 
 .revival-counter__ring--two {
-  inset: 20%;
+  inset: 21% 25%;
   filter: blur(5px);
 }
 
 .revival-counter__spark {
+  top: 50%;
+  left: 50%;
+  right: auto;
+  z-index: -1;
+  width: 160px;
+  height: 160px;
+  margin: -80px 0 0 -80px;
+  background: rgba(251, 191, 36, 0.28);
+  box-shadow: none;
   opacity: 0.777;
-  filter: blur(0.4px);
+  filter: blur(44px);
 }
 
 .home-page .hero-story {
   position: absolute;
   z-index: 4;
-  right: -18px;
+  right: 0;
   bottom: clamp(44px, 5.2vw, 76px);
-  width: min(24vw, 330px);
+  width: min(25vw, 350px);
 }
 
 .hero-story__text {
-  margin: 0 0 15px;
-  color: rgba(226, 232, 240, 0.76);
+  position: absolute;
+  z-index: 5;
+  inset: 22px 22px auto;
+  margin: 0;
+  color: rgba(248, 250, 252, 0.88);
   font-size: 15px;
-  line-height: 1.68;
+  line-height: 1.62;
   text-wrap: pretty;
+  text-shadow: 0 2px 18px rgba(2, 6, 23, 0.72);
 }
 
 .home-page .hero-story .hero-visual {
   width: 100%;
-  min-height: 220px;
-  height: 220px;
-  opacity: 0.777;
+  min-height: 248px;
+  height: 248px;
+  opacity: 1;
   transform: none;
   filter: saturate(1.08);
 }
 
 .home-page .hero-story .hero-visual::before {
-  opacity: 0.42;
+  opacity: 0.327;
 }
 
 .home-page .hero-story .hero-visual__glow {
@@ -2968,7 +2992,12 @@ body {
     radial-gradient(circle at 26% 22%, rgba(96, 165, 250, 0.28), transparent 28%),
     radial-gradient(circle at 72% 76%, rgba(251, 191, 36, 0.24), transparent 30%),
     linear-gradient(145deg, rgba(15, 23, 42, 0.34), rgba(2, 6, 23, 0.2));
+  opacity: 0.777;
   backdrop-filter: blur(16px);
+}
+
+.home-page .hero-story .float-card {
+  opacity: 0.777;
 }
 
 @media (max-width: 700px) {
@@ -3051,5 +3080,9 @@ body {
     display: block;
     min-height: 188px;
     height: 188px;
+  }
+
+  .hero-story__text {
+    inset: 18px 18px auto;
   }
 }

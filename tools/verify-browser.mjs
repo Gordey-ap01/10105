@@ -101,11 +101,11 @@ try {
   await delay(300);
   await expect(cdp, "home page class", "document.body.classList.contains('home-page')");
   await expect(cdp, "home dark hero", "getComputedStyle(document.querySelector('.hero')).backgroundColor === 'rgb(2, 6, 23)'");
-  await expect(cdp, "10105 description moved", "document.querySelector('.hero__lead') === null && document.querySelector('.hero-story__text') !== null");
+  await expect(cdp, "10105 description layered on animation", "document.querySelector('.hero__lead') === null && document.querySelector('.hero-story .hero-visual .hero-story__text') !== null");
   await expect(cdp, "revival counter present", "document.querySelector('[data-revival-counter]') !== null");
   await expect(cdp, "revival counter copy", "document.querySelector('.revival-counter')?.textContent.includes('Вернули к жизни') && document.querySelector('.revival-counter__bottom')?.textContent.includes('апгрейдили ваших спутников')");
   await expect(cdp, "10105 counter enlarged", "document.querySelector('.revival-counter__number').getBoundingClientRect().height >= 72");
-  await expect(cdp, "10105 gadget panel transparency", "Math.abs(parseFloat(getComputedStyle(document.querySelector('.hero-story .hero-visual')).opacity) - 0.777) < 0.02");
+  await expect(cdp, "10105 gadget panel transparency", "Math.abs(parseFloat(getComputedStyle(document.querySelector('.hero-story .hero-visual__glow')).opacity) - 0.777) < 0.02 && Math.abs(parseFloat(getComputedStyle(document.querySelector('.hero-story .float-card')).opacity) - 0.777) < 0.02");
   const revivalDuring = await cdp.eval("Number(document.querySelector('[data-revival-counter]')?.textContent.replace(/\\D/g, '') || 0)");
   if (revivalDuring.result.value <= 0 || revivalDuring.result.value >= 523847) failures.push("revival counter starts animated");
   await delay(2600);
