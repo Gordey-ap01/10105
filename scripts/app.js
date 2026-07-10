@@ -781,6 +781,20 @@
   function initRevivalCounter() {
     const el = document.querySelector("[data-revival-counter]");
     if (!el) return;
+    const counterPanel = el.closest(".revival-counter");
+    if (counterPanel && !counterPanel.dataset.frameToggleReady) {
+      counterPanel.dataset.frameToggleReady = "true";
+      const toggleFrame = () => {
+        const framed = counterPanel.classList.toggle("is-framed");
+        counterPanel.setAttribute("aria-pressed", framed ? "true" : "false");
+      };
+      counterPanel.addEventListener("click", toggleFrame);
+      counterPanel.addEventListener("keydown", (event) => {
+        if (event.key !== "Enter" && event.key !== " ") return;
+        event.preventDefault();
+        toggleFrame();
+      });
+    }
     const target = 523847;
     const duration = 2400;
     const schedule = [1000, 2000, 5000, 2000, 10000];
