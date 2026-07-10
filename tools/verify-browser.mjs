@@ -103,6 +103,12 @@ try {
   await expect(cdp, "home dark hero", "getComputedStyle(document.querySelector('.hero')).backgroundColor === 'rgb(2, 6, 23)'");
   await expect(cdp, "10105 hero buttons stacked", "document.querySelector('.hero__actions .btn-ghost').getBoundingClientRect().top > document.querySelector('.hero__actions .btn-primary').getBoundingClientRect().bottom");
   await expect(cdp, "10105 description layered on animation", "document.querySelector('.hero__lead') === null && document.querySelector('.hero-story .hero-visual .hero-story__text') !== null");
+  await expect(
+    cdp,
+    "10105 story text centered and unframed",
+    "(() => { const visual = document.querySelector('.hero-story .hero-visual').getBoundingClientRect(); const textNode = document.querySelector('.hero-story__text'); const text = textNode.getBoundingClientRect(); const style = getComputedStyle(textNode); const dx = Math.abs((text.left + text.width / 2) - (visual.left + visual.width / 2)); const dy = Math.abs((text.top + text.height / 2) - (visual.top + visual.height / 2)); return dx < 12 && dy < 12 && style.backgroundColor === 'rgba(0, 0, 0, 0)' && style.boxShadow === 'none'; })()"
+  );
+  await expect(cdp, "10105 story text glows", "getComputedStyle(document.querySelector('.hero-story__text')).textShadow.includes('rgb')");
   await expect(cdp, "revival counter present", "document.querySelector('[data-revival-counter]') !== null");
   await expect(cdp, "revival counter copy", "document.querySelector('.revival-counter')?.textContent.includes('Вернули к жизни') && document.querySelector('.revival-counter__bottom')?.textContent.includes('апгрейдили ваших спутников')");
   await expect(cdp, "10105 counter enlarged", "document.querySelector('.revival-counter__number').getBoundingClientRect().height >= 72");

@@ -2993,18 +2993,22 @@ body {
 .hero-story__text {
   position: absolute;
   z-index: 5;
-  inset: 16px 16px auto;
+  top: 50%;
+  left: 50%;
+  width: min(88%, 252px);
   margin: 0;
-  border-radius: 18px;
-  padding: 14px 15px;
-  background: rgba(2, 6, 23, 0.58);
-  color: rgba(248, 250, 252, 0.95);
-  font-size: 14px;
-  line-height: 1.54;
-  text-wrap: pretty;
-  text-shadow: 0 2px 14px rgba(2, 6, 23, 0.9);
-  backdrop-filter: blur(18px);
-  box-shadow: 0 18px 44px rgba(2, 6, 23, 0.24);
+  padding: 0;
+  color: rgba(248, 250, 252, 0.98);
+  font-size: clamp(15px, 1.08vw, 17px);
+  font-weight: 750;
+  line-height: 1.48;
+  text-align: center;
+  text-wrap: balance;
+  transform: translate(-50%, -50%);
+  text-shadow:
+    0 0 12px rgba(125, 211, 252, 0.48),
+    0 0 28px rgba(14, 165, 233, 0.3),
+    0 3px 18px rgba(2, 6, 23, 0.95);
 }
 
 .home-page .hero-story .hero-visual {
@@ -3108,6 +3112,7 @@ body {
   }
 
   .hero-story__text {
+    width: min(88%, 252px);
     font-size: 14px;
   }
 
@@ -3117,7 +3122,4 @@ body {
     height: 188px;
   }
 
-  .hero-story__text {
-    inset: 18px 18px auto;
-  }
 }
