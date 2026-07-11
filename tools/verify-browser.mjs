@@ -109,11 +109,13 @@ try {
     "(() => { const visual = document.querySelector('.hero-story .hero-visual').getBoundingClientRect(); const textNode = document.querySelector('.hero-story__text'); const text = textNode.getBoundingClientRect(); const style = getComputedStyle(textNode); const dx = Math.abs((text.left + text.width / 2) - (visual.left + visual.width / 2)); const dy = Math.abs((text.top + text.height / 2) - (visual.top + visual.height / 2)); return dx < 12 && dy < 12 && style.backgroundColor === 'rgba(0, 0, 0, 0)' && style.boxShadow === 'none'; })()"
   );
   await expect(cdp, "10105 story text glows", "getComputedStyle(document.querySelector('.hero-story__text')).textShadow.includes('rgb')");
+  await expect(cdp, "10105 story text lighter weight", "Number(getComputedStyle(document.querySelector('.hero-story__text')).fontWeight) <= 650");
   await expect(cdp, "revival counter present", "document.querySelector('[data-revival-counter]') !== null");
   await expect(cdp, "revival counter copy", "document.querySelector('.revival-counter')?.textContent.includes('Вернули к жизни') && document.querySelector('.revival-counter__bottom')?.textContent.includes('апгрейдили ваших спутников')");
   await expect(cdp, "10105 counter enlarged", "document.querySelector('.revival-counter__number').getBoundingClientRect().height >= 72");
-  await expect(cdp, "10105 gadget panel transparency", "Math.abs(parseFloat(getComputedStyle(document.querySelector('.hero-story .hero-visual__glow')).opacity) - 0.777) < 0.02 && Math.abs(parseFloat(getComputedStyle(document.querySelector('.hero-story .float-card')).opacity) - 0.777) < 0.02");
+  await expect(cdp, "10105 gadget panel transparency", "Math.abs(parseFloat(getComputedStyle(document.querySelector('.hero-story .hero-visual__glow')).opacity) - 0.58) < 0.02 && Math.abs(parseFloat(getComputedStyle(document.querySelector('.hero-story .float-card')).opacity) - 0.48) < 0.02");
   await expect(cdp, "10105 gadget panel blurred", "getComputedStyle(document.querySelector('.hero-story .hero-visual__glow')).filter.includes('blur') && getComputedStyle(document.querySelector('.hero-story .float-card')).filter.includes('blur')");
+  await expect(cdp, "10105 gadget movement slowed", "parseFloat(getComputedStyle(document.querySelector('.hero-story .float-card')).animationDuration) >= 12");
   await expect(cdp, "10105 counter frame hidden by default", "!document.querySelector('.revival-counter').classList.contains('is-framed') && getComputedStyle(document.querySelector('.revival-counter')).borderTopColor === 'rgba(0, 0, 0, 0)'");
   await cdp.eval("document.querySelector('.revival-counter').click()");
   await delay(100);
